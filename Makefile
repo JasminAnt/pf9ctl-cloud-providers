@@ -41,8 +41,23 @@ format:
 clean:
 	rm -rf $(BIN_DIR)
 
-build:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+
+build-mac64:
+	GO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+
+build-win32:
+	GO_ENABLED=0 GOOS=windows GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN) main.go
+
+build-win64:
+	GO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+
+build-linux32:
+	GO_ENABLED=0 GOOS=linux GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN) main.go
+
+build-linux64:
+	GO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+
+
 
 test:
 	go test -v ./...
