@@ -47,7 +47,7 @@ pf9ctl version: v1.3
 
 **check-amazon-provider**
 ```sh
-#pf9ctl check-amazon-provider iamUser access-key secret-key us-east-1
+#pf9ctl check-amazon-provider -i iamUser -a access-key -s secret-key -r us-east-1
 
 ✓ ELB Access
 ✓ Route53 Access
@@ -60,7 +60,7 @@ pf9ctl version: v1.3
 ```
 **check-google-provider**
 ```sh
-#pf9ctl check-google-provider /home/duser/Downloads/service-account.json testProject user@email.com
+#pf9ctl check-google-provider -p /home/duser/Downloads/service-account.json -n testProject -e user@email.com
 
 ✓  Success roles/iam.serviceAccountUser
 ✓  Failed roles/container.admin
@@ -70,7 +70,7 @@ pf9ctl version: v1.3
 
 **check-azure-provider**
 ```sh
-#pf9ctl check-google-provider tenantID clientID subscriptionID secretKey
+#pf9ctl check-google-provider -t tenantID -c clientID -s subscriptionID -k secretKey
 
 ✓ Has access
 ```
