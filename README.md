@@ -6,7 +6,13 @@
 ### Usage
 - Downloading the CLI 
 ```sh
-bash <(curl -sL https://pmkft-assets.s3-us-west-1.amazonaws.com/pf9ctl_setup) 
+bash <(curl -sL https://jasmind.s3.us-west-2.amazonaws.com/pf9ctl-OS)
+chmod +x pf9ctl-OS
+
+Currently supported OS: win32, win64, linux32, linux64, mac64
+Example: 
+bash <(curl -sL https://jasmind.s3.us-west-2.amazonaws.com/pf9ctl-win32)
+chmod +x pf9ctl-win32
 ```
 - **Help** 
 ```sh
