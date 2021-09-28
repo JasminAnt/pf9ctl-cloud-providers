@@ -19,10 +19,8 @@ var verbosity bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use: "pf9ctl",
-	Long: `CLI tool for Platform9 management.
-	Platform9 Managed Kubernetes cluster operations. Read more at
-	http://pf9.io/cli_clhelp.`,
+	Use:  "pf9ctl",
+	Long: `CLI tool for Platform9 cloud provider checks.`,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		// Initializing zap log with console and file logging support
 		if err := log.ConfigureGlobalLog(verbosity, util.Pf9Log); err != nil {
