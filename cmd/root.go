@@ -14,12 +14,11 @@ import (
 	"go.uber.org/zap"
 )
 
-var cfgFile string
 var verbosity bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:  "pf9ctl",
+	Use:  "pf9cp",
 	Long: `CLI tool for Platform9 cloud provider checks.`,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		// Initializing zap log with console and file logging support
@@ -60,23 +59,10 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().BoolVar(&verbosity, "verbose", false, "print verbose logs")
-	//rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.pf9ctl.yaml)")
-	//rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 // InitConfig reads in config file and ENV variables if set.
 func initConfig() {
-	/*if cfgFile != "" {
-		viper.SetConfigFile(cfgFile)
-	} else {
-		home, err := homedir.Dir()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		viper.AddConfigPath(home)
-		viper.SetConfigName(".pf9ctl")
-	}*/
 
 	// Read in environment variables that match
 	viper.AutomaticEnv()

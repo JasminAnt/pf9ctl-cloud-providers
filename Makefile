@@ -1,4 +1,4 @@
-# Copyright 2019 The pf9ctl authors.
+# Copyright 2019 The pf9cp authors.
 #
 # Usage:
 # make                 # builds the artifact
@@ -14,8 +14,8 @@ PF9_VERSION ?= 1.0.0
 VERSION := $(PF9_VERSION)-$(BUILD_NUMBER)
 DETECTED_OS := $(shell uname -s)
 BIN_DIR := $(shell pwd)/bin
-BIN := pf9ctl
-REPO := pf9ctl
+BIN := pf9cp
+REPO := pf9cp
 PACKAGE_GOPATH := /go/src/github.com/platform9/$(REPO)
 LDFLAGS := $(shell source ./version.sh ; KUBE_ROOT=. ; KUBE_GIT_VERSION=${VERSION_OVERRIDE} ; kube::version::ldflags)
 GIT_STORAGE_MOUNT := $(shell source ./git_utils.sh; container_git_storage_mount)
@@ -42,23 +42,23 @@ clean:
 	rm -rf $(BIN_DIR)
 
 
-build-mac64:
-	GO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+build-mac:
+	GO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN)-mac main.go
 
 build-win32:
-	GO_ENABLED=0 GOOS=windows GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN) main.go
+	GO_ENABLED=0 GOOS=windows GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN)-win32 main.go
 
 build-win64:
-	GO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+	GO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN)-win64 main.go
 
 build-linux32:
-	GO_ENABLED=0 GOOS=linux GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN) main.go
+	GO_ENABLED=0 GOOS=linux GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN)-linux32 main.go
 
 build-linux64:
-	GO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN) main.go
+	GO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN)-linux64 main.go
 
 build-all:
-	GO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN)-mac64 main.go
+	GO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN)-mac main.go
 	GO_ENABLED=0 GOOS=windows GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN)-win32 main.go
 	GO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -o $(BIN_DIR)/$(BIN)-win64 main.go
 	GO_ENABLED=0 GOOS=linux GOARCH=386 go build -a -o $(BIN_DIR)/$(BIN)-linux32 main.go

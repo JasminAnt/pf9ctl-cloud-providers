@@ -59,11 +59,12 @@ initialize_basedir() {
 
 refresh_symlink() {
     # Create symlink in /usr/bin
-    if [ -L /usr/bin/pf9ctl ]; then
-	if ! (sudo rm /usr/bin/pf9ctl >> ${log_file} 2>&1); then
-		assert "Failed to remove existing symlink: ${cli_exec}"; fi
+    
+    if [ -L ${symlink_path} ]; then
+	if ! (sudo rm ${symlink_path} >> ${log_file} 2>&1); then
+		assert "Failed to remove existing symlink: ${symlink_path}"; fi
 	fi
-    if ! (sudo ln -s ${cli_exec} /usr/bin/pf9ctl >> ${log_file} 2>&1); then
+    if ! (sudo ln -s ${cli_exec} ${symlink_path} >> ${log_file} 2>&1); then
 	    assert "Failed to create Platform9 CLI symlink in /usr/bin"; fi
 }
 
@@ -96,36 +97,42 @@ cat << "EOF"
 EOF
 }
 
-checkOS_version() {
-    cat /etc/*release &>/dev/null
-    if [ $? != 0 ];
-    then
-        echo "This OS is not supported. Supported operating systems are: Ubuntu (16.04, 18.04, 20.04), CentOS (7.x, 8.3) & RHEL 7.x"
-        exit
-    fi
-}
+set_os_cpu(){
 
-checkCPU_Architecture() {
-    requiredArch="x86_64" 
-    cpuArchitecture=$(uname -m)
-    if [ $cpuArchitecture != $requiredArch ];
-    then
-        echo "This CPU Architecture is not supported."
-        exit
+    os=""
+    cpu=""
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            os="linux"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+            os="mac"
+            symlink_path="/usr/local/bin/pf9cp"
+    elif [[ "$OSTYPE" == "msys"* ]]; then
+            os="win"
     fi
+
+    arch=$(uname -i)
+
+    if [ "$arch" == 'x86_64' ];then 
+        cpu="64"
+    elif [[ "$arch" == 'x86_32' ]]; then
+        cpu="32"
+    fi
+
 }
 
 ##main
 
+symlink_path="/usr/bin/pf9cp"
 pf9_basedir=$(dirname ~/pf9/.)
 log_file=${pf9_basedir}/log/cli_install.log
 pf9_bin=${pf9_basedir}/bin
 pf9_state_dirs="${pf9_bin} ${pf9_basedir}/db ${pf9_basedir}/log"
-cli_exec=${pf9_bin}/pf9ctl
-cli_path="https://pmkft-assets.s3-us-west-1.amazonaws.com/pf9ctl"
+set_os_cpu
+cli_path="https://jasmind.s3.us-west-2.amazonaws.com/pf9cp-${os}${cpu}"
+cli_exec="${pf9_bin}/pf9cp-${os}${cpu}"
 
-checkCPU_Architecture
-checkOS_version
+echo "Sympath is ${symlink_path}"
+
 print_pf9_logo
 initialize_basedir
 download_cli_binary
@@ -138,6 +145,6 @@ debugging "Platform9 CLI installation completed successfully."
 echo "Platform9 CLI installation completed successfully !"
 echo ""
 echo "To start building a Kubernetes cluster execute:"
-echo "        pf9ctl help"
+echo "        pf9cp help"
 echo ""
 #eval "${cli_exec}" help
