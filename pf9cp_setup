@@ -86,6 +86,16 @@ download_cli_binary() {
 	echo ""
 }
 
+download_cli_binary_windows(){
+    echo "Downloading Platform9 CLI binary..."
+    curl -s -O ${cli_path} -o pf9cp.log
+    Ren "${os}${cpu}" "${os}${cpu}.exe"
+    echo ""
+	echo "Platform9 CLI binary downloaded."
+	echo ""
+}
+
+
 print_pf9_logo() {
 cat << "EOF" 
  ____  _       _    __                      ___
@@ -135,16 +145,24 @@ echo "Sympath is ${symlink_path}"
 
 print_pf9_logo
 initialize_basedir
-download_cli_binary
-echo "Installing Platform9 CLI..."
-echo ""
-refresh_symlink
-check_installation
+
+if [[ ${os} == "win"* ]]; then
+    download_cli_binary_windows
+    echo "Installing Platform9 CLI..."
+    echo ""
+else
+    download_cli_binary
+    echo "Installing Platform9 CLI..."
+    echo ""
+    refresh_symlink
+    check_installation
+fi
+
+
 
 debugging "Platform9 CLI installation completed successfully."
 echo "Platform9 CLI installation completed successfully !"
 echo ""
-echo "To start building a Kubernetes cluster execute:"
+echo "To start testing providers type:"
 echo "        pf9cp help"
 echo ""
-#eval "${cli_exec}" help
