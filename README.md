@@ -24,9 +24,9 @@ Usage:
   pf9cp [command]
 
 Available Commands:
-  check-amazon-provider checks if user has amazon cloud permisisons
-  check-azure-provider  checks if user has azure cloud permisisons
-  check-google-provider checks if user has google cloud permisisons
+  check-amazon-provider checks if user has amazon cloud permission
+  check-azure-provider  checks if user has azure cloud permission
+  check-google-provider checks if user has google cloud permission
   completion            generate the autocompletion script for the specified shell
   help                  Help about any command
 

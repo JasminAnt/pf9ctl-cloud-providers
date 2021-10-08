@@ -25,7 +25,7 @@ var (
 
 var checkGoogleProviderCmd = &cobra.Command{
 	Use:   "check-google-provider",
-	Short: "checks if user has google cloud permisisons",
+	Short: "checks if user has google cloud permission",
 	Long:  "Checks if service account has the correct roles to use the google cloud provider",
 	Args: func(checkGoogleProviderCmd *cobra.Command, args []string) error {
 
@@ -42,7 +42,7 @@ var checkGoogleProviderCmd = &cobra.Command{
 
 var checkAmazonProviderCmd = &cobra.Command{
 	Use:   "check-amazon-provider",
-	Short: "checks if user has amazon cloud permisisons",
+	Short: "checks if user has amazon cloud permission",
 	Long:  "Checks if user has the correct permissions to use the amazon cloud provider",
 	Args: func(checkAmazonProviderCmd *cobra.Command, args []string) error {
 		if checkAmazonProviderCmd.Flags().Changed("iam_user") || checkAmazonProviderCmd.Flags().Changed("access_key") || checkAmazonProviderCmd.Flags().Changed("secret_key") {
@@ -58,7 +58,7 @@ var checkAmazonProviderCmd = &cobra.Command{
 
 var checkAzureProviderCmd = &cobra.Command{
 	Use:   "check-azure-provider",
-	Short: "checks if user has azure cloud permisisons",
+	Short: "checks if user has azure cloud permission",
 	Long:  "Checks if service principal has the correct permissions to use the azure cloud provider",
 	Args: func(checkAzureProviderCmd *cobra.Command, args []string) error {
 		if checkAzureProviderCmd.Flags().Changed("tenant_id") || checkAzureProviderCmd.Flags().Changed("client_id") || checkAzureProviderCmd.Flags().Changed("subscription_id") || checkAzureProviderCmd.Flags().Changed("secret_key") {
