@@ -9,7 +9,7 @@ assert() {
     if [[ -f ${log_file} ]]; then
         echo -e "\n\n"
 	echo ""
-	echo "Installation failed, Here are the last 10 lines from the log"
+	echo -e "${RED}Installation failed, Here are the last 10 lines from the log${NC}"
 	echo "The full installation log is available at ${log_file}"
 	echo "If more information is needed re-run the install with --debug"
 	echo "$(tail ${log_file})"
@@ -133,6 +133,10 @@ set_os_cpu
 cli_path="https://pmkft-assets.s3.us-west-1.amazonaws.com/IAM_Checker/pf9cp-${os}${cpu}"
 cli_exec="${pf9_bin}/pf9cp-${os}${cpu}"
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' 
+
 print_pf9_logo
 initialize_basedir
 
@@ -151,7 +155,7 @@ fi
 
 
 debugging "Platform9 CLI installation completed successfully."
-echo "Platform9 CLI installation completed successfully !"
+echo -e "${GREEN}Platform9 CLI installation completed successfully !${NC}"
 echo ""
 echo "To start testing providers type:"
 echo "        pf9cp help"
