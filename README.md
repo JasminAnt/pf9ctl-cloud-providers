@@ -6,13 +6,7 @@
 ### Usage
 - Downloading the CLI 
 ```sh
-bash <(curl -sL https://pmkft-assets.s3.us-west-1.amazonaws.com/IAM_Checker/pf9cp-OS)
-chmod +x pf9cp-OS
-
-Currently supported OS: win32, win64, linux32, linux64, mac64
-Example: 
-bash <(curl -sL https://pmkft-assets.s3.us-west-1.amazonaws.com/IAM_Checker/pf9cp-mac)
-chmod +x pf9cp-mac64
+bash <(curl -sL https://pmkft-assets.s3.us-west-1.amazonaws.com/IAM_Checker/pf9cp_setup)
 ```
 - **Help** 
 ```sh
@@ -27,7 +21,6 @@ Available Commands:
   check-amazon-provider checks if user has amazon cloud permission
   check-azure-provider  checks if user has azure cloud permission
   check-google-provider checks if user has google cloud permission
-  completion            generate the autocompletion script for the specified shell
   help                  Help about any command
 
 Flags:

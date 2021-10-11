@@ -76,21 +76,21 @@ func init() {
 
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
-	checkGoogleProviderCmd.Flags().StringVarP(&googlePath, "service_account_path", "p", "", "sets the service account path")
-	checkGoogleProviderCmd.Flags().StringVarP(&googleProjectName, "project_name", "n", "", "sets the project name")
-	checkGoogleProviderCmd.Flags().StringVarP(&googleServiceEmail, "service_account_email", "e", "", "sets the service account email")
+	checkGoogleProviderCmd.Flags().StringVarP(&googlePath, "service_account_path", "p", "", "sets the service account path (required)")
+	checkGoogleProviderCmd.Flags().StringVarP(&googleProjectName, "project_name", "n", "", "sets the project name (required)")
+	checkGoogleProviderCmd.Flags().StringVarP(&googleServiceEmail, "service_account_email", "e", "", "sets the service account email (required)")
 	rootCmd.AddCommand(checkGoogleProviderCmd)
 
-	checkAmazonProviderCmd.Flags().StringVarP(&awsIamUser, "iam_user", "i", "", "sets the iam user")
-	checkAmazonProviderCmd.Flags().StringVarP(&awsAccessKey, "access_key", "a", "", "sets the access key")
-	checkAmazonProviderCmd.Flags().StringVarP(&awsSecretKey, "secret_key", "s", "", "sets the secret key")
+	checkAmazonProviderCmd.Flags().StringVarP(&awsIamUser, "iam_user", "i", "", "sets the iam user (required)")
+	checkAmazonProviderCmd.Flags().StringVarP(&awsAccessKey, "access_key", "a", "", "sets the access key (required)")
+	checkAmazonProviderCmd.Flags().StringVarP(&awsSecretKey, "secret_key", "s", "", "sets the secret key (required)")
 	checkAmazonProviderCmd.Flags().StringVarP(&awsRegion, "region", "r", "us-east-1", "sets the region")
 	rootCmd.AddCommand(checkAmazonProviderCmd)
 
-	checkAzureProviderCmd.Flags().StringVarP(&azureTenantID, "tenant_id", "t", "", "sets the tenant id")
-	checkAzureProviderCmd.Flags().StringVarP(&azureAppID, "client_id", "c", "", "sets the client(applicaiton) id")
-	checkAzureProviderCmd.Flags().StringVarP(&azureSubID, "subscription_id", "s", "", "sets the ssubscription id")
-	checkAzureProviderCmd.Flags().StringVarP(&azureSecretKey, "secret_key", "k", "", "sets the secret key")
+	checkAzureProviderCmd.Flags().StringVarP(&azureTenantID, "tenant_id", "t", "", "sets the tenant id (required)")
+	checkAzureProviderCmd.Flags().StringVarP(&azureAppID, "client_id", "c", "", "sets the client(applicaiton) id (required)")
+	checkAzureProviderCmd.Flags().StringVarP(&azureSubID, "subscription_id", "s", "", "sets the ssubscription id (required)")
+	checkAzureProviderCmd.Flags().StringVarP(&azureSecretKey, "secret_key", "k", "", "sets the secret key (required)")
 	rootCmd.AddCommand(checkAzureProviderCmd)
 }
 
