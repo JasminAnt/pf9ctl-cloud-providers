@@ -74,6 +74,8 @@ var checkAzureProviderCmd = &cobra.Command{
 
 func init() {
 
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
+
 	checkGoogleProviderCmd.Flags().StringVarP(&googlePath, "service_account_path", "p", "", "sets the service account path")
 	checkGoogleProviderCmd.Flags().StringVarP(&googleProjectName, "project_name", "n", "", "sets the project name")
 	checkGoogleProviderCmd.Flags().StringVarP(&googleServiceEmail, "service_account_email", "e", "", "sets the service account email")
